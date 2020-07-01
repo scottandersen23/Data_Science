@@ -1,6 +1,8 @@
 ## Scott's Unit_10_HW
 
 ## Model Conclusions
+
+
 ### Part_1:
 
 Yen_forecasting 
@@ -24,6 +26,7 @@ Based on the model evaluation, would you feel confident in using these models fo
 
 - The risk is increasing and based on that fact, now would not be a great time to buy yen. Yes, I am confident in using these models for trading!
 
+### Part_2:
 
 Linear Regression Model 
 
