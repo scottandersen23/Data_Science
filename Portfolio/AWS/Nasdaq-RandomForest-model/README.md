@@ -36,6 +36,9 @@ This predictive random forest model will focus on NASDAQ companies, and will use
 - AWS S3
 - AWS CloudWatch
 
+![Process Image](aws_architecture.png)
+
+
 ## Process of Creating the Model 
 
 As all models do (as we have found out), it all begins with finding quality data that can be used to test and train it. We were able to find historical data for every NASDAQ ticker (for a small fee!). We have uploaded a year of this data to this repository so that it can be used by anyone wishing to test the model for themselves - the code is already written to intepret it right away. 
