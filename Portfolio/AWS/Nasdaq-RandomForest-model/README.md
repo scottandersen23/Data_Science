@@ -51,11 +51,11 @@ After the data was found, we cleaned it in such a fashion so that we were workin
 
 From here on out, we were able to create the model, which suprisingly enough, often-times can be the easy part (compared to data-aggregation). This was all done on AWS Sagemaker, a service provided by Amazon that allows you to work on Jupyter Notebooks on their servers. This provides access to their massive amounts of processing power which is useful for working on a model with this much data, as well as allows us to more easily collaborate on the code. Here is an example of what some of the code looks like: 
 
-![Code Example](/code-example.gif)
+![Code Example](code-example.gif)
 
 Once we had the model created and running at a level that we liked it, we then go through the process of turning the model wihch is currently split up into multiple Jupyter Notebook cells into a variety of functions, each being a key aspect of the model. This is done so that we are able to connect it to SNS, the Amazon service we are going to be using to send the tickers via email to any users who wish to subscribe to the service the model provides. To get an idea of what this looks like, here is a chunk of the code in cells compared to what it looks like in a function:
 
-![Code Example 2](/transformation.PNG)
+![Code Example 2](transformation.PNG)
 
 With SNS, we can then add emails that wish to recieve the data and the messages with the tickers can be sent whenever the code is run (as of V0.1.0)
 
@@ -67,11 +67,11 @@ For the model to be useful, it needs to be deployable. For this we opted to use 
 
 ## Results
 The results of the accuracy of the model are below:
-![Model Accuracy](/model-accuracy.png)
+![Model Accuracy](model-accuracy.png)
 
 Additionally, here is an example of what the email subscribers receive:
 
-![Email](/email.png)
+![Email](email.png)
 
 ## How this is useful for you
 
