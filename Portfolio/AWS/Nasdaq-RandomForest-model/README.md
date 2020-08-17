@@ -62,6 +62,8 @@ Once we had the model created and running at a level that we liked it, we then g
 
 With SNS, we can then add emails that wish to recieve the data and the messages with the tickers can be sent whenever the code is run (as of V0.1.0)
 
+![pyaws](py_Project_artwork.png)
+
 ## Deploying the Model
 
 The model will do the analysis to create a 1-day forecast. With all the data points we fed into it, it "learned" ways to identify ticker movements and we can ask for it to return us the tickers that it believes will move in a positive direction the following day, and will return us the highest movers. 
