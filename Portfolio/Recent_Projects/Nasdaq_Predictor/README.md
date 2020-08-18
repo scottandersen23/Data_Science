@@ -5,7 +5,7 @@
 ![pyaws](py_Project_artwork.png)
 
 
-## Purpose and Goal of this Project/Repository
+## Purpose of this Project
 
 Have you ever sat down at 5 o'clock to watch Mad Money or any after market show? And you listen to Jim Cramer talk and within about two minutes he lists off 8-10 companies that have been up "blank_%" and you're thinking why haven't I heard of these guys?... Well if you're anything like us, sometimes you miss one or two, so our goal for this project was to build something that would analyze live data and send us a daily list of *tickers* predicted to go up the following day. The idea is to help the average trader/investor who likes researching capital markets and active investing. But ultimately we attempted to make something we thought we would use ourselves. 
  
