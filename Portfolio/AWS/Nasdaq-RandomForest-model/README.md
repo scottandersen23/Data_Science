@@ -61,7 +61,8 @@ We chose the Random Forest Classifier for two reasons:
 
 After testing the model, we were able to predict returns with 100% accuracy...so naturally something had to be wrong. We spent all of our time on AWS Sagemaker, a service provided by Amazon that allows you to work on Jupyter Notebooks and collaborate on the same notebook without using Git - highly reccommend! AWS also offers access to their computing power so as long as your WiFi isn't terrible this is super helpful. Here is an example of what some of the code looks like: 
 
-![Code Example](code-example.gif)
+![Code Example](random_forest.png)
+
 
 Once we had the model trained and running without error, the Team got together and uploaded the files through S3 and passed our data into a Lambda function. To finish, the 'makefile' had to run through CloudWatch / SNS in order to make the daily or weekly email alert possible. This step provided us with the opportunity to recieve feedback and connect with subscribers. To get an idea of what this looks like, here is a chunk of the code in cells compared to what it looks like in a function:
 
