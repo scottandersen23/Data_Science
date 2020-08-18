@@ -10,7 +10,7 @@
 Have you ever sat down at 5 o'clock to watch Mad Money or any after market show? And you listen to Jim Cramer talk and within about two minutes he lists off 8-10 companies that have been up "blank_%" and you're thinking why haven't I heard of these guys?... Well if you're anything like us, sometimes you miss one or two, so our goal for this project was to build something that would analyze live data and send us a daily list of *tickers* predicted to go up the following day. The idea is to help the average trader/investor who likes researching capital markets and active investing. But ultimately we attempted to make something we thought we would use ourselves. 
  
 
-The predictive random forest model will focus on testing NASDAQ companies from the past year, and will use all tickers in the index as of July 2020. For a small fee we were able to test over 900,000 data points for daily closing prices. Our primary goal is to identify stocks that can be expected to outperform the NASDAQ, then create a way to send us daily alert with the ticker symbols for the next day. We had a 2 week deadline to complete and plan to continue to make improvements! 
+The predictive random forest model was trainied on all companies listed on the NASDAQ in the past year, and the data begins in April 2019 and ends July 2020. For a small fee we were able to test over 900,000 data points specifically looking at closing prices with regards to returns. Our primary goal is to identify stocks that can be expected to outperform the NASDAQ, then create a way to send us daily alert with the ticker symbols due to spike the next day. We had a 2 week deadline to complete and plan to continue to make improvements! 
 
 ### Team 
 
