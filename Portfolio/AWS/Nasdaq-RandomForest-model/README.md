@@ -46,7 +46,8 @@ The predictive random forest model was trainied on all companies listed on the N
 As with all models, the quality of your model relies on the data you have. We were able to find historical data for all NASDAQ tickers as of July 2020 with the ability to backtest 10 years. We focused on YTD information so that we were able to factor in the volatility during the pandemic.  
 
 It took us sometime to work with the dataset, but after we got a clean DataFrame we were able to view the 'Close' prices of each ticker and calculate daily returns with a shift to account for bias. 
------------------------------------------------------------
+
+
 
 We chose the Random Forest Classifier for two reasons: 
   
