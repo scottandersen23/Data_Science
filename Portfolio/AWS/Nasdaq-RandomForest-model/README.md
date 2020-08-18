@@ -7,9 +7,10 @@
 
 ## Purpose and Goal of this Project/Repository
 
-As markets become increasingly more volatile, and trading becomes more automated thanks to algorithmic trading, it has become more significant to take in a larger volume of information to make better informed decisions regarding investments in markets around the globe — more information than can be reasonably expected of a person to parse through and analyze individually. The goal of this project is to create a model that will analyze data fed into it by creating a model based off of historical data and using it to predict returns on future data based on trends. 
+Have you ever sat down at 5 o'clock to watch Mad Money or any after market show? And you listen to Jim Cramer talk and within about two minutes he lists off 8-10 companies that have been up "blank_%" and you thinking why haven't I heard of these guys?... Well if you're anything like us, sometimes you miss one or two, so our goal for this project was to build something that would analyze live data and send us a daily list of *tickers* predicted to go up the following day. The idea is to help the average trader/investor who likes researching capital markets and active investing. But ultimately we attempted to make something we thought we would use ourselves. 
+ 
 
-This predictive random forest model will focus on NASDAQ companies, and will use data from every single ticker in the exchange over the course of a year from July 2019 to July 2020 to train and test the data — over 900,000 data points. Our primary goal is to identify stocks that can be expected to outperform the NASDAQ, and our seconday goal with this is to practice more in the creation of models for forecasting purposes, as well as to familiarize ourselves more with AWS infrastructure, given that we will be using Sagemaker to collaborate on the project. 
+The predictive random forest model will focus on testing NASDAQ companies from the past year, and will use all tickers in the index as of July 2020. For a small fee we were able to test over 900,000 data points for daily closing prices. Our primary goal is to identify stocks that can be expected to outperform the NASDAQ, then create a way to send us daily alert with the ticker symbols for the next day. We had a 2 week deadline to complete and plan to continue to make improvements! 
 
 ### Team 
 
@@ -42,33 +43,41 @@ This predictive random forest model will focus on NASDAQ companies, and will use
 
 ## Process of Creating the Model 
 
-As all models do (as we have found out), it all begins with finding quality data that can be used to test and train it. We were able to find historical data for every NASDAQ ticker (for a small fee!). We have uploaded a year of this data to this repository so that it can be used by anyone wishing to test the model for themselves - the code is already written to intepret it right away. 
+As with all models, the quality of your model relies on the data you have. We were able to find historical data for all NASDAQ tickers as of July 2020 with the ability to backtest 10 years. We focused on YTD information so that we were able to factor in the volatility during the pandemic.  
 
-After the data was found, we cleaned it in such a fashion so that we were working with only a "returns" column for every ticker on every day from July 2019 to July 2020. We chose this data for two reasons: 
+It took us sometime to work with the dataset, but after we got a clean DataFrame we were able to view the 'Close' prices of each ticker and calculate daily returns with a shift to account for bias. 
+-----------------------------------------------------------
+
+We chose the Random Forest Classifier for two reasons: 
   
-  1. This is *a lot* of data already for a model to train on. over 900,000 individual percentages for this model to learn on. We figured this was more than enough to create something that was accurate enough for our liking. 
-  2. The data includes moments:
-    A) Before COVID
-    B) During the COVID Crash
-    C) During the COVID Recovery
-   This allows the model to learn from different types of "moments" in the stock market (stability, reduction, and growth).
+  1. Plenty of datapoints for the model to learn. 
+  2. The data contained a couple significant events such as:
 
-From here on out, we were able to create the model, which suprisingly enough, often-times can be the easy part (compared to data-aggregation). This was all done on AWS Sagemaker, a service provided by Amazon that allows you to work on Jupyter Notebooks on their servers. This provides access to their massive amounts of processing power which is useful for working on a model with this much data, as well as allows us to more easily collaborate on the code. Here is an example of what some of the code looks like: 
+    A) Pre COVID
+    B) COVID Crash
+    C) COVID Recovery
+
+
+After testing the model, we were able to predict returns with 100% accuracy...so naturally something had to be wrong. We spent all of our time on AWS Sagemaker, a service provided by Amazon that allows you to work on Jupyter Notebooks and collaborate on the same notebook without using Git - highly reccommend! AWS also offers access to their computing power so as long as your WiFi isn't terrible this is super helpful. Here is an example of what some of the code looks like: 
 
 ![Code Example](code-example.gif)
 
-Once we had the model created and running at a level that we liked it, we then go through the process of turning the model wihch is currently split up into multiple Jupyter Notebook cells into a variety of functions, each being a key aspect of the model. This is done so that we are able to connect it to SNS, the Amazon service we are going to be using to send the tickers via email to any users who wish to subscribe to the service the model provides. To get an idea of what this looks like, here is a chunk of the code in cells compared to what it looks like in a function:
+Once we had the model trained and running without error, the Team got together and uploaded the files through S3 and passed our data into a Lambda function. To finish, the 'makefile' had to run through CloudWatch / SNS in order to make the daily or weekly email alert possible. This step provided us with the opportunity to recieve feedback and connect with subscribers. To get an idea of what this looks like, here is a chunk of the code in cells compared to what it looks like in a function:
 
 ![Code Example 2](transformation.PNG)
 
-With SNS, we can then add emails that wish to recieve the data and the messages with the tickers can be sent whenever the code is run (as of V0.1.0)
 
 
-## Deploying the Model
+## Deploying the Model 
 
-The model will do the analysis to create a 1-day forecast. With all the data points we fed into it, it "learned" ways to identify ticker movements and we can ask for it to return us the tickers that it believes will move in a positive direction the following day, and will return us the highest movers. 
+For the model to be useful, it needs to be deployable. Again, we opted to use AWS to execute the model once a day. We ran into a potential issue with our file sizes, in particular the data and imported libraries. To solve this we uploaded the data separately on S3, and then we used CloudWatch to configure the daily emails. After debugging, we were able to get it deployed and the email could be requested.
 
-For the model to be useful, it needs to be deployable. For this we opted to use AWS lambda to be able to execute the model once a day. We ran into a potential issue with our file sizes, in particular the data and imported libraries. To solve this we uploaded the data separately on S3, and then we used CloudWatch to configure the daily emails. After debugging, we were able to get it deployed and the email could be requested.
+## Future Improvements
+
+1. Incorporate a Regressor and train the data using different models (ARIMA).
+2. Improve message to include: Distance to Earnings
+3. Limit the number of Tickers that our function returns to top 15 companies. 
+
 
 ## Results
 The results of the accuracy of the model are below:
@@ -81,8 +90,9 @@ Additionally, here is an example of what the email subscribers receive:
 ## How this is useful for you
 
 There are a variety of ways you can trade with this knowledge, the two most common being:
- 1. Momentum Trading (short-term): Day-by-day trading of stocks in the NASDAQ Composite. This is useful for day-traders who are trying to ride waves or identify trends quickly. Anyone looking to beat the market in the short-term can use this model to generate a list of tickers to keep on eye on for the following trading day.  
- 2. Options Trading (Momentum, short-term or long-term): Quick gains with much higher risk. This is useful for momentum trading stock options intra-day.
+ 1. Active Investing: attempting to make you aware of high performing companies ahead of the news and identify trends quickly. 
+
+ 2. Seen as a template for creating your own framework using AWS and Machine Learning algorithms. 
 
 ## Resources
 
