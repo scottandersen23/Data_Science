@@ -10,4 +10,8 @@ Next, you want to open a browser and open Remix and click Solidity as the langua
 
 Make sure to use the Injected Web3 - environment on the deploy tab to ensure you are linked to Meta Mask. 
 
+![meta](metamask.png)
 
+
+
+![remix](remix.png)
