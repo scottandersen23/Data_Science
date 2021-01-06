@@ -1,6 +1,9 @@
 ## DEPLOY A CROWDSALE
 
+![bitcoin](bitcoin_pic.png)
+
 TOOLS USED...
+
 1. REMIX
 2. SOLIDITY
 3. METAMASK
@@ -57,4 +60,3 @@ STEP 5 - TESTING THE CROWDSALE:
 STEP 6 - DEPLOYING THE CROWDSALE:
 
 - Deploy the crowdsale to the Kovan or Ropsten testnet, and store the deployed address for later. Switch MetaMask to your desired network, and use the Deploy tab in Remix to deploy your contracts. Take note of the total gas cost, and compare it to how costly it would be in reality. Since you are deploying to a network that you don't have control over, faucets will not likely give out 300 test Ether. You can simply reduce the goal when deploying to a testnet to an amount much smaller, like 10,000 wei.
-
